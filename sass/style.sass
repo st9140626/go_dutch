@@ -1,0 +1,93 @@
+$color-orange: #FFC954
+$color-white: #f3f3f3
+$color-black: #000000
+$color-grey: #444
+$color_red: #FF3D4A
+
+body
+  width: 100%
+  max-width: 640px
+  margin: auto
+  padding: 1rem
+  background: $color-orange
+  *
+    font-family: 'Source Sans Pro', 'Helvetica Neue', Roboto, 'Noto Sans CJK TC', 'Heiti TC', '-apple-system', BlinkMacSystemFont, Ubuntu, Cantarell,'微軟正黑體', sans-serif
+    line-height: 1.5em
+  hr
+    border-width: 2px
+    border-color: $color-black
+  a,button,input
+    -webkit-tap-highlight-color: rgba(255,0,0,0)
+  input
+    display: inline-block
+    vertical-align: center
+    width: 100%
+    max-width: 184px
+    outline: none
+    padding-left: 8px
+  button
+    user-select: none
+    cursor: pointer
+    &:active
+      outline: none
+  ul
+    list-style: none
+    padding: 0
+  .section
+    background: $color-white
+    border: solid 3px $color-black
+    padding: 1.5rem 2rem
+    &.hide
+      .content
+        display: none
+  .error_msg
+    color: $color_red
+    font-size: 13px
+  .tag
+    font-weight: 700
+    border: 2px solid $color-grey
+    display: inline-block
+    vertical-align: middle
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15)
+    user-select: none
+    background: #fff
+    &:nth-child(n+1)
+      margin-right: 1em
+    span
+      padding: 0 1em
+    button
+      color: #fff
+      background: $color-grey
+      border: none
+      border-left: 2px solid $color-grey
+      cursor: pointer
+      margin: 0
+      &:focus
+        outline: none 
+  .pay-list
+    display: inline-block
+    vertical-align: middle
+    &:nth-child(n+1)
+      margin-right: 1em
+  .pay-option
+    display: inline-block
+    vertical-align: middle
+    cursor: pointer
+    font-weight: 700
+    border: 2px solid $color-grey
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15)
+    user-select: none
+    background: #fff
+    &.active
+      background: $color-grey
+      color: $color-orange
+    input
+      display: none
+    span
+      padding: 0 1em
+      
+.up
+  color: $color-red
+.down
+  color: #43a047
+  

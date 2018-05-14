@@ -1,0 +1,54 @@
+div(id="main")
+  div(class="section mb-3")
+    div
+      button(v-on:click="getLocalStorage") 讀取暫存
+      button(v-on:click="saveLocalStorage") 儲存暫存
+      button(v-on:click="clearLocalStorage") 清除暫存
+  div(class="section mb-3")
+    h4 新增成員 (目前 {{account.length}} 人)
+    div(class="content mb-0")
+      input(type="text" v-model.trim="inputMember" v-on:keyup.enter="addNewMember" placeholder="輸入成員名稱")
+      button(v-on:click="addNewMember" :disabled="!inputMember") 新增
+      div(class="error_msg" v-if="isShow") 相同名稱已存在
+      hr
+      div(class="content mb-0")
+        ul
+          li(v-for="member in account" class="tag mb-2")
+            span {{member.name}}
+            button(v-on:click="removeThisMember(member.name)") X
+  div(class="section mb-3")
+    h4 新增費用
+    input(type="text" v-model="inputCost.name" placeholder="花費項目")
+    input(type="number" v-model="inputCost.cost" placeholder="花費總額")
+    button(v-on:click="addNewCost" :disabled="!inputCost.name || inputCost.cost < 1") 新增
+    hr
+    div(class="content mb-0")
+      span(class="mb-1") 已選擇 {{selectedMember.length}} 人
+      br
+      span(class="mb-1") $ {{computedSingle}} / 人
+      hr
+      span 付費成員
+      button(class="ml-3" v-on:click="selectAll" v-if="selectedMember.length !== account.length") 選擇全部
+      button(class="ml-3" v-on:click="disselectAll" v-if="selectedMember.length === account.length && account.length > 0") 取消選擇全部
+      ul(class="mt-3")
+        li(v-for="member in account" key="member.name" class="pay-list")
+          label(:for="member.name" class="pay-option" v-bind:class="{ active: activeLabel(member.name)}")
+            input(type="checkbox" v-model="selectedMember" :key="member.name" :value="member.name" :id="member.name")
+            span {{member.name}}
+  div(class="section mb-3")
+    h4 花費項目明細
+    div(class="content mb-0")
+      ul
+        li(v-for="item in costList")
+          span {{item.name}} : {{item.cost}}
+  div(class="section mb-3")
+    h4 預收公費
+    div(class="content mb-0")
+      input(type="number" v-model="defaultMoney")
+  div(class="section")
+    h4 成員花費總覽
+    div(class="content mb-0")
+      ul
+        li(v-for="member in account")
+          span {{member.name}} : 
+          span(v-bind:class="[(defaultMoney - member.cost > 0)  ? 'up' : 'down']") {{defaultMoney - member.cost}}
